@@ -23,7 +23,7 @@ def Home():
 def predict():
     float_features = [x for x in request.form.values()]
     float_features = list(filter(None, float_features))
-    float_features = [float(x) for x in float_features]
+    # float_features = [float(x) for x in float_features]
     rawinput = [np.array(float_features)]
     input_feats = [x for x in request.form.keys()]
     input_data = dict(zip(input_feats,float_features))
@@ -35,6 +35,7 @@ def predict():
     
     #Feature Enginnering from feature.py
     input_data['log_Peatal_Width'] = process(input_data['Petal_Width'])
+    
     if msg[0] == 0:
         features = [np.array([i for i in input_data.values()])]
         prediction = model.predict(features)
